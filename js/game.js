@@ -5,20 +5,20 @@
 // This is the config file for the phaser3 program
 
 //* Game scene */
-const config = {
+const config = { 
   type: Phaser.Auto,
   width: 1920,
   height: 1080,
   physics: {
-    default: 'arcade'
+    default: 'arcade',
     arcade: {
       debug: true
     }
   },
   // set background color
-  backgroundcolor: 0x5f6e7a
+  backgroundcolor: 0x5f6e7a,
   scale: {
-    mode: Phase.Scale.FIT,
+    mode: Phaser.Scale.FIT,
     // we place it in the middle of the page.
     autocenter: Phaser.Scale.CENTER_BOTH
   }
