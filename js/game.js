@@ -4,6 +4,7 @@
 // Created on April 2022
 // This is the config file for the phaser3 program
 
+// scene import statements
 import SplashScene from './js/splashScene.js'
 
 // our game scene
