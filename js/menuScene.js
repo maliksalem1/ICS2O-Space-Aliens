@@ -1,18 +1,20 @@
 /* global Phaser */
 
-// Created By: maliksalem1
-// Created on: May 2022
-// This is the Title Scene
+// Copyright (c) 2022 maliksalem1
+//
+// Created by: maliksalem1
+// Created on: Apr 2022
+// This is the Menu Scene
 
 /**
- * This class is the Title Scene.
+ * This class is the Menu Scene.
  */
-class TitleScene extends Phaser.Scene {
+class MenuScene extends Phaser.Scene {
   /**
    * This method is the construtor.
    */
   constructor() {
-    super({ key: "titleScene" })
+    super({ key: "menuScene" })
   }
 
   /**
@@ -26,7 +28,7 @@ class TitleScene extends Phaser.Scene {
    * This method is the preload.
    */
   preload() {
-    console.log("Title Scene")
+    console.log("Menu Scene")
   }
 
   /**
@@ -44,4 +46,4 @@ class TitleScene extends Phaser.Scene {
   }
 }
 
-export default TitleScene
+export default MenuScene
