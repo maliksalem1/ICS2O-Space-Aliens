@@ -7,9 +7,22 @@
 // This is the Game Scene
 
 /**
- * This class is the Menu Scene.
+ * This class is the Game Scene.
  */
- class GameScene extends Phaser.Scene {
+class GameScene extends Phaser.Scene {
+  /**
+   * This method creates an Alien.
+   */
+  createAlien() {
+    const alienXLocation = Math.floor(Math.random() * 1920) + 1 // this will get a number between 1 and 1920
+    let alienXVelocity = Math.floor(Math.random() * 50) + 1 // this will get a number between 1 and 50
+    alienXVelocity *= Math.round(Math.random()) ? 1 : -1 //this will add minus sign in 50% cases
+    const anAlien = this.physics.add.sprite(alienXLocation, -100, "alien")
+    anAlien.body.velocity.y = 200
+    anAlien.body.velocity.x = alienXVelocity
+    this.alienGroup.add(anAlien)
+  }
+
   /**
    * This method is the construtor.
    */
@@ -18,7 +31,7 @@
 
     this.background = null
     this.ship = null
-    this.fireMissile = false
+    this.firMissile = false
   }
 
   /**
@@ -34,12 +47,13 @@
   preload() {
     console.log("Game Scene")
 
-    // images
+    // pass
     this.load.image("starBackground", "assets/starBackground.png")
     this.load.image("ship", "assets/spaceShip.png")
     this.load.image("missile", "assets/missile.png")
+    this.load.image("alien", "assets/alien.png")
     // sound
-    this.load.audio('laser', 'assets/laser1.wav')
+    this.load.audio("laser", "assets/laser1.wav")
   }
 
   /**
@@ -53,14 +67,17 @@
 
     // create a group for the missiles
     this.missileGroup = this.physics.add.group()
-    // pass
+
+    // create a group for the alien
+    this.alienGroup = this.add.group()
+    this.createAlien()
   }
 
   /**
    * This method is the update.
    */
   update(time, delta) {
-    // called 60 times a second, hopefully!
+    // called 60 times a second, hopefully
 
     const keyLeftObj = this.input.keyboard.addKey("LEFT")
     const keyRightObj = this.input.keyboard.addKey("RIGHT")
@@ -84,9 +101,13 @@
       if (this.fireMissile === false) {
         // fire missile
         this.fireMissile = true
-        const aNewMissile = this.physics.add.sprite(this.ship.x, this.ship.y, 'missile')
+        const aNewMissile = this.physics.add.sprite(
+          this.ship.x,
+          this.ship.y,
+          "missile"
+        )
         this.missileGroup.add(aNewMissile)
-        this.sound.play('laser')
+        this.sound.play("laser")
       }
     }
 
@@ -100,7 +121,6 @@
         item.destroy()
       }
     })
-    // pass
   }
 }
 
